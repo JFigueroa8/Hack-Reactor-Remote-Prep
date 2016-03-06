@@ -1,0 +1,112 @@
+<!DOCTYPE html>
+
+<html>
+  <head>
+    <title>Last jQuery Exercise</title>
+  </head>
+  <body>
+
+    <script src="https://code.jquery.com/jquery-2.1.1.js"></script>
+    <script type="text/javascript" src="../../jquery-ui.js"></script>
+    <script type="text/javascript">
+    // function that runs after the document has fully loaded
+
+    $(document).ready(function() {
+      // set height and width for pic4 using an integer, which will later be converted into pixels
+      // Then generate a random position on the screen for pic4 using Math.random, the window size, and the div size
+      var pic4_height = 250;
+      var pic4_width = 250;
+      var random_height = (Math.random() * ($(document).height() - pic4_height)).toFixed();
+      var random_width = (Math.random() * ($(document).width() - pic4_width)).toFixed();
+
+      // Adding a div and three buttons for pic1 to the body of the page
+      $('body').append('<div id="pic1"></div>');
+      $('body').append('<button id="decrease">Make the image smaller</button');
+      $('body').append('<button id="default">Default size</button');
+      $('body').append('<button id="increase">Make the image larger</button>');
+
+      // Adding a div and button for pic2 to the body of the page
+      $('body').append('<div id="pic2"></div>');
+      $('body').append('<button id="toggle">Click me, if you dare!</button>');
+
+      // Adding a div and two buttons for pic3 to the body of the page
+      $('body').append('<div id="pic3"></div>');
+      $('body').append('<button id="left">&laquo</button>');
+      $('body').append('<button id="right">&raquo</button>');
+
+      // Adding a div for pic4 to the body of the page
+      $('body').append('<div id="pic4"></div>');
+
+      // Appending img tag to the div with the id pic1
+      // Adding attribute src to the img tag, along with a link to the picture and a default height for the picture
+      // Assigning each button to its own id
+      // Assigning animate to each button so when they are clicked, the pictures size will change
+      $('#pic1').append('<img id="nailed"/>');
+      $('#nailed').attr('src', 'http://cdn.meme.am/instances/500x/46617357.jpg').css('height', '250px');
+      $('#increase').click(function(){
+        $('#nailed').animate({
+          height: "500px"
+        }, 'slow')});
+        $('#default').click(function(){
+          $('#nailed').animate({
+            height: "250px"
+          }, 'slow')});
+      $('#decrease').click(function(){
+        $('#nailed').animate({
+          height: "50px"
+        }, 'slow')});
+
+        // Appending img tag to the div with the id pic2
+        // Adding attribute src to the img tag, along with a link to the picture and a default height for the picture
+        // Margin was added to the top of pic2 in order to create some distance between pic1 and pic2
+        // Margin was added to the bottom of the button in order to create some distance between the button and pic3
+        // Assigning the button to its own id
+        // Assigning animate to the so when it is clicked, the picture will toggle between hide and show
+        $('#pic2').append('<img id="summer"/>');
+        $('#summer').attr('src', 'http://www.theretreatbeautyclinic.co.uk/wp-content/uploads/2015/04/cute-Baby-but-not-summer-ready-.jpg').css({
+          'height': '250px',
+          'margin-top': '100px'
+        });
+        $('#toggle').css('margin-bottom', '100px');
+        $('#toggle').click(function() {
+          $('#summer').toggle("slow", function(){
+          });
+        });
+
+        // Appending img tag to the div with the id pic3
+        // Adding attribute src to the img tag, along with a link to the picture and a default height for the picture
+        // Margin was added to the bottom of the right button in order to create some distance between the buttons and the buttom of the page
+        // Assigning each button to its own id
+        // Assigning animate to the buttons so when they are clicked, the picture will slide to the left or right of the page
+        $('#pic3').append('<img id="rock"/>');
+        $('#rock').attr('src', 'http://www.dumpaday.com/wp-content/uploads/2013/07/funny-pictures-washing-the-dishes.jpg').css('height', '250px');
+        $('#right').css('margin-bottom', '100px');
+        $('#right').click(function() {
+          $('#rock').animate({
+            "margin-left": "+=50px"
+          }, "fast" )});
+        $('#left').click(function() {
+          $('#rock').animate({
+            "margin-left": "-=50px"
+          }, "fast" )});
+
+          // Appending img tag to the div with the id pic4
+          // Adding attribute src to the img tag, along with a link to the picture
+          // Then assigning the default height, width and random position to the picture using the variables we declared earlier
+          // The picture should randomly display in a new place each time the page is reloaded
+          // Used jQuery UI to make the picture draggable
+          $('#pic4').append('<img id="smiley"/>');
+          $('#smiley').attr('src', 'http://smileyfaceplace.weebly.com/uploads/6/9/7/1/6971266/9884860_orig.jpg').css({
+            'height': pic4_height + 'px',
+            'width': pic4_width + 'px',
+            'position': 'fixed',
+            'left': random_width + 'px',
+            'top': random_height + 'px'
+          });
+          $('img').draggable();
+
+
+      });
+    </script>
+  </body>
+</html>
